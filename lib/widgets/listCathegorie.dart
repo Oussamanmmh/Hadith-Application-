@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hadith_app/hadith/cathegories.dart';
-import 'dart:convert';
 
 import 'package:hadith_app/widgets/listHadith.dart';
 
 class ListCathegorie extends StatefulWidget {
   const ListCathegorie({super.key});
+  
 
   @override
   State<ListCathegorie> createState() => _ListCathegorieState();
@@ -14,6 +14,19 @@ class ListCathegorie extends StatefulWidget {
 
 class _ListCathegorieState extends State<ListCathegorie> {
   List<Cathegorie> cathegories = [];
+  List <Cathegorie> subCathegories = [];
+  @override
+  void initState() {
+    super.initState();
+    
+    cathegories = parseCathegories(getCathegories() as String);
+  }
+  @override
+  void dipsose(){
+    super.dispose();
+    
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,13 +50,22 @@ class _ListCathegorieState extends State<ListCathegorie> {
           ),
           backgroundColor: Colors.grey[600],
           title: Container(
-            margin: EdgeInsets.only(left: 10, right: 10),
+            margin:const EdgeInsets.only(left: 10, right: 10),
             child: CupertinoTextField(
+              textDirection: TextDirection.rtl,
+
               prefix: const Padding(
                 padding: EdgeInsets.all(10),
                 child: Icon(CupertinoIcons.search),
               ),
-              placeholder: "Search",
+            placeholder: "Search",
+              onChanged: (value){
+              
+                setState(() {
+                  subCathegories = cathegories.where((element) => element.title.contains(value)).toList();
+                });
+              
+              },
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 color: Colors.grey[300],
@@ -52,28 +74,16 @@ class _ListCathegorieState extends State<ListCathegorie> {
             ),
           ),
         ),
-        body: StreamBuilder(
-          stream: getCathegories(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-            if (snapshot.hasError) {
-              return const Center(
-                child: Text("Error"),
-              );
-            }
-            print(snapshot.data);
+        body: ListView.builder(
+          itemCount: subCathegories.isNotEmpty ? subCathegories.length : cathegories.length,
+          
+          itemBuilder: (context, index) {
+           
+          
 
-            cathegories = parseCathegories(snapshot.data);
-
-            return ListView.builder(
-              itemCount: cathegories.length,
-              itemBuilder: (context, index) {
+            
                 //parse the json
-                final category = cathegories[index];
+                final category = subCathegories.isNotEmpty  ? subCathegories[index] : cathegories[index];
 
                 return Column(
                   children: [
@@ -105,17 +115,21 @@ class _ListCathegorieState extends State<ListCathegorie> {
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => Listhadith(id:category.id ),));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    Listhadith(id: category.id),
+                              ));
                         },
                       ),
                     ),
-                    SizedBox(
+                   const SizedBox(
                       height: 20,
                     )
                   ],
                 );
-              },
-            );
+            
           },
         ));
   }

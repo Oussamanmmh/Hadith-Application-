@@ -51,8 +51,24 @@ class DetailsHadith extends StatelessWidget {
                     Text(hadithDetails.title,textAlign: TextAlign.center,textDirection:TextDirection.rtl, style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
                     const SizedBox(height: 10,),
                     Text(hadithDetails.hadeeth,textDirection:TextDirection.rtl ,textAlign: TextAlign.right, style: TextStyle(fontSize: 18),),
-                    const SizedBox(height: 10,),
-                    Text(hadithDetails.attribution,textAlign: TextAlign.left, style: TextStyle(fontSize: 15),),
+                    const SizedBox(height: 5,),
+                    Text(hadithDetails.attribution,textAlign: TextAlign.left, style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                    const SizedBox(height: 20,),
+                    Text("التفسير : "+hadithDetails.explanation,textDirection:TextDirection.rtl ,textAlign: TextAlign.right, style: TextStyle(fontSize: 15),),
+                    const SizedBox(height: 20,),
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 10),
+                      child: Column(
+                        children: [
+                          Text("الدرجة : "+hadithDetails.grade,textAlign: TextAlign.left, style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                          const SizedBox(height: 10,),
+                          Text("المراجع : "+hadithDetails.reference,textAlign: TextAlign.right, textDirection:TextDirection.rtl,style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                        ],
+                      ),
+                    ),
+
+                    SizedBox(
+                      height: 20,),
                    
                   ],
                 ),

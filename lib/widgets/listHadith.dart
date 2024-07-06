@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hadith_app/hadith/hadith.dart';
@@ -12,6 +14,8 @@ class Listhadith extends StatefulWidget {
 }
 
 class _ListhadithState extends State<Listhadith> {
+  bool isFav = false;
+  List<String> selectedId =[];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,11 +65,22 @@ class _ListhadithState extends State<Listhadith> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: ListTile(
+                  key: ValueKey<String>(hadiths[index].id),
                   title: Text("حديث : "+hadiths[index].title ,textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold),),
                   subtitle: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                       IconButton(onPressed: (){}, icon: Icon(Icons.favorite_border) , color: Colors.red,),
+                       IconButton(onPressed: (){
+                        setState(() {
+                          if(selectedId.contains(hadiths[index].id)){
+                            selectedId.remove(hadiths[index].id);
+                          }
+                          else{
+                            selectedId.add(hadiths[index].id);
+                          }
+                        });
+                       
+                       }, icon: Icon(Icons.favorite) , color: selectedId!.contains(hadiths[index].id)? Colors.red : Colors.grey,),
                       Text("الرقم : "+hadiths[index].id ,textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold),),
                     ],
                   ),
