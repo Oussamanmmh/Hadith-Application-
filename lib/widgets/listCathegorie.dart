@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hadith_app/hadith/cathegories.dart';
@@ -15,12 +17,23 @@ class ListCathegorie extends StatefulWidget {
 class _ListCathegorieState extends State<ListCathegorie> {
   List<Cathegorie> cathegories = [];
   List <Cathegorie> subCathegories = [];
+  String search = "";
+  bool isload = true;
   @override
   void initState() {
-    super.initState();
-    
-    cathegories = parseCathegories(getCathegories() as String);
+     super.initState();
+
+    getCathegories()!.listen((event) {
+
+      setState(() {
+        cathegories = parseCathegories(event);
+        isload = false;
+        //subCathegories = cathegories;
+      });
+    });
   }
+   
+   
   @override
   void dipsose(){
     super.dispose();
@@ -62,6 +75,7 @@ class _ListCathegorieState extends State<ListCathegorie> {
               onChanged: (value){
               
                 setState(() {
+                  search = value;
                   subCathegories = cathegories.where((element) => element.title.contains(value)).toList();
                 });
               
@@ -74,7 +88,10 @@ class _ListCathegorieState extends State<ListCathegorie> {
             ),
           ),
         ),
-        body: ListView.builder(
+        body:
+        isload ? const Center(child: CircularProgressIndicator(),) :
+         search.isNotEmpty && subCathegories.isEmpty ? const Center(child: Text("No results found"),) :
+        ListView.builder(
           itemCount: subCathegories.isNotEmpty ? subCathegories.length : cathegories.length,
           
           itemBuilder: (context, index) {
@@ -83,10 +100,11 @@ class _ListCathegorieState extends State<ListCathegorie> {
 
             
                 //parse the json
-                final category = subCathegories.isNotEmpty  ? subCathegories[index] : cathegories[index];
+                final category = subCathegories.isNotEmpty  ? subCathegories[index] :  cathegories[index];
 
                 return Column(
                   children: [
+                   
                     Container(
                       padding: const EdgeInsets.all(10),
                       margin: const EdgeInsets.symmetric(
@@ -124,6 +142,7 @@ class _ListCathegorieState extends State<ListCathegorie> {
                         },
                       ),
                     ),
+                    
                    const SizedBox(
                       height: 20,
                     )

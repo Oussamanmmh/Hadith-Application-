@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hadith_app/hadith/cathegories.dart';
 import 'package:hadith_app/widgets/listCathegorie.dart';
-import 'package:http/http.dart' as http;
+
 
 void main() {
   runApp(const MyApp());
