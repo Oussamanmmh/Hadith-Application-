@@ -33,6 +33,7 @@ Stream<dynamic>? getHadiths(String id) async* {
 }
 
 List<Hadith> parseHadiths(String responseBody) {
+ 
   final Map<String, dynamic> decodedJson = jsonDecode(responseBody);
   // Assuming the list of hadiths is under a key 'data'. Adjust if your structure is different.
   final List<dynamic> hadithsList = decodedJson['data'];
