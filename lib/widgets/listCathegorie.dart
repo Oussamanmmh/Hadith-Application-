@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hadith_app/hadith/cathegories.dart';
+import 'package:hadith_app/widgets/favorite.dart';
 
 import 'package:hadith_app/widgets/listHadith.dart';
 
@@ -55,7 +56,9 @@ class _ListCathegorieState extends State<ListCathegorie> {
                       const Icon(Icons.settings, size: 30, color: Colors.white),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const FavoritePage()));
+                  },
                   icon: const Icon(Icons.favorite, size: 30, color: Colors.red),
                 ),
               ],

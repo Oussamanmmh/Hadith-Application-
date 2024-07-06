@@ -4,10 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hadith_app/hadith/hadith.dart';
 import 'package:hadith_app/widgets/detailsHadith.dart';
+import 'package:hive/hive.dart';
 
 class Listhadith extends StatefulWidget {
   const Listhadith({super.key , required this.id});
   final String id;
+  
 
   @override
   State<Listhadith> createState() => _ListhadithState();
@@ -15,7 +17,24 @@ class Listhadith extends StatefulWidget {
 
 class _ListhadithState extends State<Listhadith> {
   bool isFav = false;
-  List<String> selectedId =[];
+  final hadith_favorite = Hive.box('hadith_favorite');
+  List<dynamic> selectedId = [];
+  
+  @override
+  void initState() {
+    super.initState();
+    print("jdisj");
+   for(var i = 0; i < hadith_favorite.length; i++){
+     selectedId.add(hadith_favorite.getAt(i));
+     print(hadith_favorite.getAt(i));
+   }
+     
+   
+  }
+  @override
+  void dispose(){
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,11 +91,27 @@ class _ListhadithState extends State<Listhadith> {
                     children: [
                        IconButton(onPressed: (){
                         setState(() {
+                           print("selected");
+                           print(selectedId);
+
+
                           if(selectedId.contains(hadiths[index].id)){
                             selectedId.remove(hadiths[index].id);
+                           print(selectedId);
+                            print("-----------------");
+                            print(hadith_favorite);
+                            
+                            hadith_favorite.delete(hadiths[index].id);
+
                           }
                           else{
+                          
                             selectedId.add(hadiths[index].id);
+                            print(selectedId);
+                            hadith_favorite.put( hadiths[index].id, hadiths[index].id);
+                            print("-----------------");
+
+                            print(hadith_favorite);
                           }
                         });
                        
