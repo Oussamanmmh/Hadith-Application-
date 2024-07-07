@@ -6,6 +6,7 @@ import 'package:hadith_app/hadith/cathegories.dart';
 import 'package:hadith_app/widgets/favorite.dart';
 
 import 'package:hadith_app/widgets/listHadith.dart';
+import 'package:hadith_app/widgets/settings.dart';
 
 class ListCathegorie extends StatefulWidget {
   const ListCathegorie({super.key});
@@ -51,7 +52,9 @@ class _ListCathegorieState extends State<ListCathegorie> {
             child: Row(
               children: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsPage()));
+                  },
                   icon:
                       const Icon(Icons.settings, size: 30, color: Colors.white),
                 ),

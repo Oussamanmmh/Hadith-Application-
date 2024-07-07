@@ -16,6 +16,7 @@ class FavoritePage extends StatefulWidget {
 
 class _FavoritePageState extends State<FavoritePage> {
   final hadith_favorite = Hive.box('hadith_favorite');
+  bool isload = true;
   final List<dynamic> selectedHadeeth = [];
 
 
@@ -23,12 +24,19 @@ class _FavoritePageState extends State<FavoritePage> {
   void initState() {
     super.initState();
     print("jdisj");
+
     for (var i = 0; i < hadith_favorite.length; i++) {
       print(hadith_favorite.getAt(i));
       getHadithDetails(hadith_favorite.getAt(i)).listen((event) {
         setState(() {
           selectedHadeeth.add(parseHadithDetails(event));
+          isload = false;
         });
+      });
+    }
+    if (hadith_favorite.isEmpty) {
+      setState(() {
+        isload = false;
       });
     }
    
@@ -48,10 +56,13 @@ class _FavoritePageState extends State<FavoritePage> {
         ),
         title: const Text("Favorite"),
       ),
-      body: ListView.builder(
+      body: selectedHadeeth.isEmpty ? Center(
+        child:isload ? CircularProgressIndicator(): Text("No favorite hadith yet!", style: TextStyle(fontWeight: FontWeight.bold),),
+      ): ListView.builder(
         itemCount: selectedHadeeth.length,
         itemBuilder: (context, index) {
           return Container(
+            key: Key(selectedHadeeth[index].id),
               margin: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   boxShadow: const[ BoxShadow(
@@ -63,8 +74,26 @@ class _FavoritePageState extends State<FavoritePage> {
                   borderRadius: BorderRadius.circular(10),
                 ),
             child: ListTile(
-              title: Text(selectedHadeeth[index].title),
-              subtitle: Text(selectedHadeeth[index].hadeeth),
+              key: Key(selectedHadeeth[index].id),
+              title: Text("حديث : "+ selectedHadeeth[index].title , textDirection: TextDirection.rtl,style: const TextStyle(fontWeight: FontWeight.bold)),
+              subtitle: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(onPressed: (){
+                    setState(() {
+                      print("localstorage:");
+                       print(hadith_favorite.getAt(index)) ;
+                      hadith_favorite.delete(selectedHadeeth[index].id);
+                     
+                      selectedHadeeth.removeAt(index);
+                    });
+                  }, 
+                  icon:  Icon(Icons.favorite, color: Colors.red,)), 
+
+                      Text("الرقم : "+selectedHadeeth[index].id ,textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold),),
+                ],
+              ),
+
               onTap: () {
                 Navigator.push(
                   context,
