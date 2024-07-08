@@ -49,24 +49,22 @@ class _ListCathegorieState extends State<ListCathegorie> {
         appBar: AppBar(
           toolbarHeight: 90,
           leadingWidth: 100,
-          leading: Expanded(
-            child: Row(
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsPage()));
-                  },
-                  icon:
-                      const Icon(Icons.settings, size: 30, color: Colors.white),
-                ),
-                IconButton(
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const FavoritePage()));
-                  },
-                  icon: const Icon(Icons.favorite, size: 30, color: Color.fromARGB(255, 190, 17, 5)),
-                ),
-              ],
-            ),
+          leading: Row(
+            children: [
+              IconButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsPage()));
+                },
+                icon:
+                    const Icon(Icons.settings, size: 30, color: Colors.white),
+              ),
+              IconButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const FavoritePage()));
+                },
+                icon: const Icon(Icons.favorite, size: 30, color: Color.fromARGB(255, 190, 17, 5)),
+              ),
+            ],
           ),
           backgroundColor: const Color(0xFF405D72),
           title: Container(

@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_toggle_switch/animated_toggle_switch.dart'; // Add this line to import the package
+import 'package:hadith_app/widgets/modeModel.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
+import 'package:provider/provider.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -13,9 +15,11 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   List<bool> isSelected = [true, false];
   int select = 0;
+// late  bool  mode ;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Consumer<ModeModel>(builder: 
+    (context , value , child)=> Scaffold(
       backgroundColor: Color(0xffFFF8F3),
         appBar: AppBar(
           toolbarHeight: 90,
@@ -64,7 +68,9 @@ class _SettingsPageState extends State<SettingsPage> {
                 
                   
                   onTap: () {
-                    // Add your onTap logic here
+                      value.changeMode();
+                  
+                  print("the mode now is : "+value.getmode.toString());
                   },
                   onDoubleTap: () {
                     // Add your onDoubleTap logic here
@@ -73,11 +79,11 @@ class _SettingsPageState extends State<SettingsPage> {
                     // Add your onSwipe logic here
                   },
                   //initial value
-                  value: true,
+                  value: value.getmode,
                   textOn: 'light',
                   textOff: 'dark',
-                  colorOn: Colors.blue,
-                  colorOff: Colors.red,
+                  colorOn: Colors.grey,
+                  colorOff: Colors.black,
                   iconOn: Icons.light_mode,
                   iconOff: Icons.dark_mode,
                   textSize: 16.0,
@@ -100,6 +106,7 @@ class _SettingsPageState extends State<SettingsPage> {
               trailing: const Icon(Icons.arrow_forward_ios),
             ),
           ],
-        ));
+        )),
+    );
   }
 }

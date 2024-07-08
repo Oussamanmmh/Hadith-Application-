@@ -1,14 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:hadith_app/widgets/landingpage.dart';
 import 'package:hadith_app/widgets/listCathegorie.dart';
-import 'package:hive/hive.dart';
+import 'package:hadith_app/widgets/modeModel.dart';
 import 'package:hive_flutter/adapters.dart';
-
+import 'package:provider/provider.dart';
 
 void main() async{
   await Hive.initFlutter();
   await Hive.openBox('hadith_favorite');
-  runApp(const MyApp());
+  await Hive.openBox('mode');
+  Hive.box('mode').put('mode', 'light');
+ 
+  runApp(
+    MultiProvider(providers: [
+    ChangeNotifierProvider(create: (context) => ModeModel()),
+    ],
+    child: const MyApp()
+    )
+  );
+
+
 }
 
 class MyApp extends StatelessWidget {

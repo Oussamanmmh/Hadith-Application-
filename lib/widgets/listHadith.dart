@@ -90,13 +90,7 @@ class _ListhadithState extends State<Listhadith> {
                   
                   margin: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.grey,
-                        blurRadius: 5,
-                        offset: Offset(0, 2),
-                      ),
-                    ],
+                   
                     color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(10),
                   ),
