@@ -22,14 +22,17 @@ class _ListCathegorieState extends State<ListCathegorie> {
   List<Cathegorie> subCathegories = [];
   String search = "";
   bool isload = true;
+  late var lang  ;
   @override
   void initState() {
     super.initState();
     print("init state");
     print(Provider.of<LanguageModel>(context, listen: false).getLanguage);
 
-     final lang = Provider.of<LanguageModel>(context, listen: false).getLanguage;
      
+     setState(() {
+       lang = Provider.of<LanguageModel>(context , listen: true).getLanguage;
+     });
 
     getCathegories(lang)!.listen((event) {
       setState(() {

@@ -17,7 +17,6 @@ class _SettingsPageState extends State<SettingsPage> {
   List<bool> isSelected = [true, false];
 @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 // late  bool  mode ;

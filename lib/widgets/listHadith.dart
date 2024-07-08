@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hadith_app/hadith/hadith.dart';
+import 'package:hadith_app/options/languages.dart';
 import 'package:hadith_app/widgets/detailsHadith.dart';
 import 'package:hive/hive.dart';
+import 'package:provider/provider.dart';
 
 class Listhadith extends StatefulWidget {
   const Listhadith({super.key, required this.id});
@@ -21,21 +23,34 @@ class _ListhadithState extends State<Listhadith> {
   List <Hadith> hadiths = [];
   List<Hadith> selectedHadith = [];
   String search = "";
+  late var lang ;
 
   @override
   void initState() {
     super.initState();
-   
+    // for (var i = 0; i < hadith_favorite.length; i++) {
+    //   selectedId.add(hadith_favorite.getAt(i));
+    // }
+    // getHadiths(widget.id )!.listen((event) {
+    //   setState(() {
+    //     hadiths = parseHadiths(event);
+    //     selectedHadith = hadiths;
+    //     isload = false;
+    //   });
+    // });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+    lang = Provider.of<LanguageModel>(context, listen: false).getLanguage;
     for (var i = 0; i < hadith_favorite.length; i++) {
       selectedId.add(hadith_favorite.getAt(i));
     }
-    getHadiths(widget.id)!.listen((event) {
+    getHadiths(widget.id, lang)!.listen((event) {
       setState(() {
         hadiths = parseHadiths(event);
         selectedHadith = hadiths;
         isload = false;
       });
     });
+  });
   }
 
   @override

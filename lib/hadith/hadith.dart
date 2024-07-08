@@ -19,9 +19,9 @@ factory Hadith.fromJson(Map<String , dynamic> json){
 
 }
 
-Stream<dynamic>? getHadiths(String id) async* {
+Stream<dynamic>? getHadiths(String id , String lang) async* {
   print("id: $id");
-  final url = "https://hadeethenc.com/api/v1/hadeeths/list/?language=ar&category_id=${id}&page=1&per_page=20";
+  final url = "https://hadeethenc.com/api/v1/hadeeths/list/?language=${lang}&category_id=${id}&page=1&per_page=20";
   final response = await http.get(Uri.parse(url));
   if(response.statusCode == 200){
     
