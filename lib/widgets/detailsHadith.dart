@@ -12,13 +12,14 @@ class DetailsHadith extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         toolbarHeight: 90,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back  , color: Theme.of(context).colorScheme.onSecondary,) ,
         ),
         title: Text("Details Hadith"),
       ),

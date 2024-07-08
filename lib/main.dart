@@ -33,7 +33,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: mode == 'light' ? ThemeData.light() : ThemeData.dark(),
+      theme: darkTheme,
+      darkTheme: darkTheme,
+      
+    
       routes: {
         '/listCathegorie': (context) => const ListCathegorie(),
       },

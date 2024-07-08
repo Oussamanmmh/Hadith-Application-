@@ -46,7 +46,9 @@ class _FavoritePageState extends State<FavoritePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor:   Theme.of(context).colorScheme.background,
       appBar: AppBar(
+       // titleTextStyle:TextStyle(color: Colors.black),
         toolbarHeight: 90,
         leading: IconButton(
           onPressed: () {
@@ -54,7 +56,7 @@ class _FavoritePageState extends State<FavoritePage> {
           },
           icon: const Icon(Icons.arrow_back),
         ),
-        title: const Text("Favorite"),
+        title:  Text("Favorite" ),
       ),
       body: selectedHadeeth.isEmpty ? Center(
         child:isload ? CircularProgressIndicator(): Text("No favorite hadith yet!", style: TextStyle(fontWeight: FontWeight.bold),),
@@ -68,7 +70,7 @@ class _FavoritePageState extends State<FavoritePage> {
                  
                  
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.grey[800],
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
             child: ListTile(
               key: Key(selectedHadeeth[index].id),

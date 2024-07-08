@@ -18,15 +18,18 @@ class _SettingsPageState extends State<SettingsPage> {
 // late  bool  mode ;
   @override
   Widget build(BuildContext context) {
+    
     return Consumer<ModeModel>(builder: 
     (context , value , child)=> Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
+      
         appBar: AppBar(
           toolbarHeight: 90,
           leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: const Icon(Icons.arrow_back),
+            icon:  Icon(Icons.arrow_back , color:  Theme.of(context).colorScheme.onSecondary,),
           ),
           title: const Text("Settings"),
         ),

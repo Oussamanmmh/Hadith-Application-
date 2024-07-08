@@ -46,13 +46,14 @@ class _ListhadithState extends State<Listhadith> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
         appBar: AppBar(
           toolbarHeight: 90,
           leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: const Icon(Icons.arrow_back),
+            icon:  Icon(Icons.arrow_back , color:  Theme.of(context).colorScheme.onSecondary,),
           ),
           title: Container(
             margin: EdgeInsets.only(left: 10, right: 10),
@@ -72,7 +73,7 @@ class _ListhadithState extends State<Listhadith> {
               },
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-              color: Colors.grey[600],
+              color: Theme.of(context).colorScheme.background,
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
@@ -91,7 +92,7 @@ class _ListhadithState extends State<Listhadith> {
                   margin: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                    
-                    color: Colors.grey[800],
+                    color: Theme.of(context).colorScheme.secondary,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: ListTile(

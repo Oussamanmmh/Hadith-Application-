@@ -45,6 +45,8 @@ class _ListCathegorieState extends State<ListCathegorie> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
+      
         appBar: AppBar(
           toolbarHeight: 90,
           leadingWidth: 100,
@@ -55,7 +57,8 @@ class _ListCathegorieState extends State<ListCathegorie> {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsPage()));
                 },
                 icon:
-                    const Icon(Icons.settings, size: 30, color: Colors.white),
+                     Icon(Icons.settings, size: 30,
+                    color: Theme.of(context).colorScheme.onSecondary,),
               ),
               IconButton(
                 onPressed: () {
@@ -85,7 +88,7 @@ class _ListCathegorieState extends State<ListCathegorie> {
               },
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: Colors.grey[600],
+                color: Theme.of(context).colorScheme.background,
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
@@ -118,7 +121,7 @@ class _ListCathegorieState extends State<ListCathegorie> {
                          
 
                         
-                        color: Colors.grey[800],
+                        color: Theme.of(context).colorScheme.secondary,
                        
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -129,13 +132,13 @@ class _ListCathegorieState extends State<ListCathegorie> {
                           "العنوان : " + category.title,
                           textAlign: TextAlign.right,
                           style: TextStyle(fontWeight: FontWeight.bold,
-                          color: Colors.white),
+                          ),
                         ),
                         subtitle: Text(
                           "عدد الأحاديث : " + category.hadeeths_count,
                           textAlign: TextAlign.right,
                           style: TextStyle(fontWeight: FontWeight.bold,
-                          color: Colors.white),
+                         ),
                         ),
                         onTap: () {
                           Navigator.push(
