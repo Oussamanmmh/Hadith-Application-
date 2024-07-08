@@ -123,14 +123,7 @@ class _ListCathegorieState extends State<ListCathegorie> {
 
                         
                         color: Color(0xff758694),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Colors.grey,
-                            blurRadius: 5,
-                            offset: Offset(0, 2),
-                          )
-                        
-                        ],
+                       
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: ListTile(
