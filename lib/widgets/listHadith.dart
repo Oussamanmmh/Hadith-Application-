@@ -72,7 +72,7 @@ class _ListhadithState extends State<Listhadith> {
               },
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: Colors.grey[300],
+              color: Colors.grey[600],
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
@@ -91,7 +91,7 @@ class _ListhadithState extends State<Listhadith> {
                   margin: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                    
-                    color: Colors.grey[300],
+                    color: Colors.grey[800],
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: ListTile(

@@ -45,7 +45,6 @@ class _ListCathegorieState extends State<ListCathegorie> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF405D72),
         appBar: AppBar(
           toolbarHeight: 90,
           leadingWidth: 100,
@@ -66,7 +65,6 @@ class _ListCathegorieState extends State<ListCathegorie> {
               ),
             ],
           ),
-          backgroundColor: const Color(0xFF405D72),
           title: Container(
             margin:const EdgeInsets.only(left: 10, right: 10),
             child: CupertinoTextField(
@@ -87,7 +85,7 @@ class _ListCathegorieState extends State<ListCathegorie> {
               },
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: Colors.grey[300],
+                color: Colors.grey[600],
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
@@ -120,7 +118,7 @@ class _ListCathegorieState extends State<ListCathegorie> {
                          
 
                         
-                        color: Color(0xff758694),
+                        color: Colors.grey[800],
                        
                         borderRadius: BorderRadius.circular(10),
                       ),

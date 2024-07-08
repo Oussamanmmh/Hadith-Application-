@@ -9,6 +9,7 @@ class ModeModel extends ChangeNotifier{
 
   void changeMode(){
     mode = !mode ;
+    Hive.box('mode').put('mode', mode ? 'light' : 'dark');
     notifyListeners();
   }
 

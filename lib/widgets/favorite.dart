@@ -65,13 +65,10 @@ class _FavoritePageState extends State<FavoritePage> {
             key: Key(selectedHadeeth[index].id),
               margin: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  boxShadow: const[ BoxShadow(
-                    color: Colors.grey,
-                    blurRadius: 5,
-                    offset: Offset(0, 2),
-                  ),],
-                  color: Colors.grey[300],
+                 
+                 
                   borderRadius: BorderRadius.circular(10),
+                  color: Colors.grey[800],
                 ),
             child: ListTile(
               key: Key(selectedHadeeth[index].id),

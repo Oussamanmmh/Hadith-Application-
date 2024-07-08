@@ -20,7 +20,6 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Consumer<ModeModel>(builder: 
     (context , value , child)=> Scaffold(
-      backgroundColor: Color(0xffFFF8F3),
         appBar: AppBar(
           toolbarHeight: 90,
           leading: IconButton(
@@ -30,7 +29,6 @@ class _SettingsPageState extends State<SettingsPage> {
             icon: const Icon(Icons.arrow_back),
           ),
           title: const Text("Settings"),
-          backgroundColor: Color(0xffF7E7DC),
         ),
         body: Column(
           children: [
