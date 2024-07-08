@@ -45,6 +45,7 @@ class _ListCathegorieState extends State<ListCathegorie> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFF405D72),
         appBar: AppBar(
           toolbarHeight: 90,
           leadingWidth: 100,
@@ -62,17 +63,17 @@ class _ListCathegorieState extends State<ListCathegorie> {
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => const FavoritePage()));
                   },
-                  icon: const Icon(Icons.favorite, size: 30, color: Colors.red),
+                  icon: const Icon(Icons.favorite, size: 30, color: Color.fromARGB(255, 190, 17, 5)),
                 ),
               ],
             ),
           ),
-          backgroundColor: Colors.grey[600],
+          backgroundColor: const Color(0xFF405D72),
           title: Container(
             margin:const EdgeInsets.only(left: 10, right: 10),
             child: CupertinoTextField(
               textDirection: TextDirection.rtl,
-
+        
               prefix: const Padding(
                 padding: EdgeInsets.all(10),
                 child: Icon(CupertinoIcons.search),
@@ -112,31 +113,40 @@ class _ListCathegorieState extends State<ListCathegorie> {
                   children: [
                    
                     Container(
+                      
                       padding: const EdgeInsets.all(10),
                       margin: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 10),
                       decoration: BoxDecoration(
-                        color: Colors.grey[300],
+                        //background color #758694
+                         
+
+                        
+                        color: Color(0xff758694),
                         boxShadow: const [
                           BoxShadow(
                             color: Colors.grey,
                             blurRadius: 5,
                             offset: Offset(0, 2),
                           )
+                        
                         ],
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: ListTile(
+                        
                         key: Key(category.id),
                         title: Text(
                           "العنوان : " + category.title,
                           textAlign: TextAlign.right,
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: TextStyle(fontWeight: FontWeight.bold,
+                          color: Colors.white),
                         ),
                         subtitle: Text(
                           "عدد الأحاديث : " + category.hadeeths_count,
                           textAlign: TextAlign.right,
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: TextStyle(fontWeight: FontWeight.bold,
+                          color: Colors.white),
                         ),
                         onTap: () {
                           Navigator.push(
