@@ -54,12 +54,12 @@ class _FavoritePageState extends State<FavoritePage> {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: const Icon(Icons.arrow_back),
+          icon:  Icon(Icons.arrow_back ,color: Theme.of(context).colorScheme.onSecondary,),
         ),
-        title:  Text("Favorite" ),
+        title: const Text("Favorite" ),
       ),
       body: selectedHadeeth.isEmpty ? Center(
-        child:isload ? CircularProgressIndicator(): Text("No favorite hadith yet!", style: TextStyle(fontWeight: FontWeight.bold),),
+        child:isload ? const CircularProgressIndicator(): Text("No favorite hadith yet!", style: TextStyle(fontWeight: FontWeight.bold),),
       ): ListView.builder(
         itemCount: selectedHadeeth.length,
         itemBuilder: (context, index) {

@@ -30,11 +30,11 @@ class Cathegorie{
 
 
 //get the cathegories 
-Stream<dynamic>? getCathegories() async* {
+Stream<dynamic>? getCathegories(String lang) async* {
     
 
   
-     const url = "https://hadeethenc.com/api/v1/categories/list/?language=ar" ;
+    final url = 'https://hadeethenc.com/api/v1/categories/list/?language=$lang' ;
       var response = await http.get(Uri.parse(url));
       if(response.statusCode == 200){
         print(response.body);

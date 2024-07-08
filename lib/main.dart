@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hadith_app/options/languages.dart';
 import 'package:hadith_app/options/mode.dart';
 import 'package:hadith_app/widgets/landingpage.dart';
 import 'package:hadith_app/widgets/listCathegorie.dart';
@@ -10,9 +11,11 @@ void main() async{
   await Hive.initFlutter();
   await Hive.openBox('hadith_favorite');
   await Hive.openBox('mode');
+  await Hive.openBox('language');
   runApp(
     MultiProvider(providers: [
     ChangeNotifierProvider(create: (context) => ModeModel()),
+    ChangeNotifierProvider(create: (context) => LanguageModel()),
     ],
     child: const MyApp()
     )
@@ -27,13 +30,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-     dynamic mode = Hive.box('mode').get('mode'); 
 
    
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: darkTheme,
+      theme: Provider.of<ModeModel>(context).mode == true ? lightTheme : darkTheme,
       darkTheme: darkTheme,
       
     
