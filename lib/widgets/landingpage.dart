@@ -20,10 +20,16 @@ class LandingPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                ElevatedButton(onPressed: (){}, 
+                ElevatedButton(onPressed: (){
+                  Navigator.pushNamed(context, '/listCathegorie');
+                }, 
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                   backgroundColor: Colors.grey[800],
+                  //when clicked
+                  foregroundColor: Colors.white10
+
+                   
                   
                 ),
                 child: Text('Get Started', style: TextStyle(fontSize: 20, color: Colors.white),)),
