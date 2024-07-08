@@ -16,12 +16,12 @@ class LanguageModel extends ChangeNotifier{
      case 2:
        select = 'fr';
        break;
-     default:
-    Hive.box('language').put('language', select);
-    notifyListeners();
+     }
+     Hive.box('language').put('language', select);
+     notifyListeners();
   }
 
   
 
-  }
+  
 }

@@ -6,11 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:hadith_app/hadith/hadithdetails.dart';
 
 class DetailsHadith extends StatelessWidget {
-  const DetailsHadith({Key? key, required this.id});
+  const DetailsHadith({Key? key, required this.id , required this.lang});
   final String id; 
+  final String lang;
+  
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
@@ -25,7 +28,7 @@ class DetailsHadith extends StatelessWidget {
       ),
       body: Center(
         child: StreamBuilder(
-        stream: getHadithDetails(id), 
+        stream: getHadithDetails(id, lang), 
         builder: (context, snapshot){
           if(snapshot.connectionState == ConnectionState.waiting){
             return const Center(

@@ -29,11 +29,21 @@ class _ListCathegorieState extends State<ListCathegorie> {
     print("init state");
     print(Provider.of<LanguageModel>(context, listen: false).getLanguage);
 
+    Provider.of<LanguageModel>(context, listen: false).addListener(() {
+      setState(() {
+        lang = Provider.of<LanguageModel>(context, listen: false).getLanguage;
+          getCathegories(lang)!.listen((event) {
+      setState(() {
+        cathegories = parseCathegories(event);
+        isload = false;
+        //subCathegories = cathegories;
+      });
+    });
+        
+      });
+    });
      
-     setState(() {
-       lang = Provider.of<LanguageModel>(context , listen: true).getLanguage;
-     });
-
+ lang = Provider.of<LanguageModel>(context, listen: false).getLanguage;
     getCathegories(lang)!.listen((event) {
       setState(() {
         cathegories = parseCathegories(event);
@@ -46,6 +56,7 @@ class _ListCathegorieState extends State<ListCathegorie> {
   @override
   void dipsose() {
     super.dispose();
+    Provider.of<LanguageModel>(context, listen: false).removeListener(() {});
   }
 
   @override

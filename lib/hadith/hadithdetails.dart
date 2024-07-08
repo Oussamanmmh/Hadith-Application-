@@ -34,14 +34,19 @@ class HadithDetails {
   }
 }
 
-Stream<String> getHadithDetails(String id) async* {
-  final url =
-      "https://hadeethenc.com/api/v1/hadeeths/one/?language=ar&id=${id}";
-  final response = await http.get(Uri.parse(url));
-  if (response.statusCode == 200) {
-    yield response.body;
-  } else {
-    print("Failed to get hadith details");
+Stream<String> getHadithDetails(String id , String lang) async* {
+  final url = "https://hadeethenc.com/api/v1/hadeeths/one/?language=ar&id=$id";
+   try {
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      yield response.body;
+    } else {
+      // Yield an error message or a default value as a string
+      yield "Failed to get hadith details";
+    }
+  } catch (e) {
+    // Yield an error message or a default value as a string in case of exception
+    yield "Error fetching data: $e";
   }
 }
 

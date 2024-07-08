@@ -4,8 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hadith_app/hadith/hadith.dart';
 import 'package:hadith_app/hadith/hadithdetails.dart';
+import 'package:hadith_app/options/languages.dart';
 import 'package:hadith_app/widgets/detailsHadith.dart';
 import 'package:hive/hive.dart';
+import 'package:provider/provider.dart';
 
 class FavoritePage extends StatefulWidget {
   const FavoritePage({super.key});
@@ -17,6 +19,7 @@ class FavoritePage extends StatefulWidget {
 class _FavoritePageState extends State<FavoritePage> {
   final hadith_favorite = Hive.box('hadith_favorite');
   bool isload = true;
+  late String lang ;
   final List<dynamic> selectedHadeeth = [];
 
 
@@ -24,10 +27,12 @@ class _FavoritePageState extends State<FavoritePage> {
   void initState() {
     super.initState();
     print("jdisj");
+   
+   lang = Provider.of<LanguageModel>(context, listen: false).getLanguage;
 
     for (var i = 0; i < hadith_favorite.length; i++) {
       print(hadith_favorite.getAt(i));
-      getHadithDetails(hadith_favorite.getAt(i)).listen((event) {
+      getHadithDetails(hadith_favorite.getAt(i), lang).listen((event) {
         setState(() {
           selectedHadeeth.add(parseHadithDetails(event));
           isload = false;
@@ -97,7 +102,7 @@ class _FavoritePageState extends State<FavoritePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => DetailsHadith(id: selectedHadeeth[index].id),
+                    builder: (context) => DetailsHadith(id: selectedHadeeth[index].id, lang: lang,),
                   ),
                 );
               },

@@ -23,7 +23,7 @@ class _ListhadithState extends State<Listhadith> {
   List <Hadith> hadiths = [];
   List<Hadith> selectedHadith = [];
   String search = "";
-  late var lang ;
+  late String lang ;
 
   @override
   void initState() {
@@ -40,6 +40,7 @@ class _ListhadithState extends State<Listhadith> {
     // });
     WidgetsBinding.instance.addPostFrameCallback((_) {
     lang = Provider.of<LanguageModel>(context, listen: false).getLanguage;
+    print("langauages : $lang");
     for (var i = 0; i < hadith_favorite.length; i++) {
       selectedId.add(hadith_favorite.getAt(i));
     }
@@ -156,6 +157,7 @@ class _ListhadithState extends State<Listhadith> {
                           MaterialPageRoute(
                               builder: (context) => DetailsHadith(
                                     id: hadith.id,
+                                    lang: lang 
                                   )));
                     },
                   ),
