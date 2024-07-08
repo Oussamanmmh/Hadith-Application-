@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hadith_app/widgets/landingpage.dart';
 import 'package:hadith_app/widgets/listCathegorie.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -21,11 +22,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
+        brightness: Brightness.light,
 
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const ListCathegorie(),
+      home: const LandingPage(),
     );
   }
 }
