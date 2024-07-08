@@ -52,6 +52,7 @@ class DetailsHadith extends StatelessWidget {
                 child: Column(
                   
                   children: [
+                     const SizedBox(height: 20,),
                     Text(hadithDetails.title,textAlign: TextAlign.center,textDirection:TextDirection.rtl, style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
                     const SizedBox(height: 10,),
                     Text(hadithDetails.hadeeth,textDirection:TextDirection.rtl ,textAlign: TextAlign.right, style: TextStyle(fontSize: 18),),
