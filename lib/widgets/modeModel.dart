@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
 
 class ModeModel extends ChangeNotifier{
-  bool mode = Hive.box('mode').get('mode') == 'light' ? true : false;
+  bool mode = Hive.box('mode').get('mode') == 'light' ? true : false ;
 
 
   dynamic get getmode => mode ;
